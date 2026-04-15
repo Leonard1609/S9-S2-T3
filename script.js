@@ -44,3 +44,16 @@ function editarRegistro(boton, nombreAntiguo) {
         infoDiv.innerHTML = `<strong>${nuevoNombre}</strong><br><small>${smallInfo}</small>`;
     }
 }
+
+function toggleDarkMode() {
+    // Le ponemos o quitamos la clase "dark-mode" al body
+    document.body.classList.toggle("dark-mode");
+    
+    // Cambiamos el texto del botón para que se vea pro
+    const btn = document.getElementById("btnDarkMode");
+    if (document.body.classList.contains("dark-mode")) {
+        btn.textContent = "☀️ Modo Claro";
+    } else {
+        btn.textContent = "🌙 Modo Oscuro";
+    }
+}

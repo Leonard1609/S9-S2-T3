@@ -128,3 +128,36 @@ ol#listaEstudiantes li {
 
 .btn-edit { background-color: #ffc107; color: black; }
 .btn-delete { background-color: #dc3545; }
+
+/* Estilos para el Modo Oscuro */
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+body.dark-mode h1 { color: #8bb9fe; }
+
+body.dark-mode .container, 
+body.dark-mode ol#listaEstudiantes li {
+    background-color: #2d2d2d;
+    border-color: #444;
+    color: #e0e0e0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+body.dark-mode label { color: #bbb; }
+
+body.dark-mode input, 
+body.dark-mode select {
+    background-color: #3d3d3d;
+    border-color: #555;
+    color: white;
+}
+
+body.dark-mode .avatar {
+    background-color: #3d3d3d;
+    border-color: #555;
+    color: #8bb9fe;
+}
+
+body.dark-mode .avatar::before { color: #8bb9fe; }
