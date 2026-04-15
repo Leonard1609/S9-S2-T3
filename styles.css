@@ -96,3 +96,28 @@ span {
 
 .btn-edit:hover { background-color: #e0a800; }
 .btn-delete:hover { background-color: #c82333; }
+
+ol#listaEstudiantes {
+    list-style-position: inside;
+    padding: 0;
+    margin-top: 20px;
+}
+
+ol#listaEstudiantes li {
+    background: #fff;
+    margin: 10px auto;
+    padding: 15px;
+    border-left: 5px solid #3b71ca;
+    max-width: 400px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: block; /* Para que cada registro sea un bloque */
+}
+
+.btn-edit, .btn-delete {
+    margin-top: 10px;
+    margin-right: 5px;
+    width: auto; /* Que no ocupen todo el ancho */
+    display: inline-block;
+    padding: 5px 12px;
+}
