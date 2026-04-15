@@ -1,62 +1,46 @@
 function registrarEstudiante() {
-    // 1. Capturamos los elementos
-    const nombreInput = document.getElementById("nombre");
-    const correoInput = document.getElementById("correo");
-    const telefonoInput = document.getElementById("telefono");
-    const cursoInput = document.getElementById("curso");
+    const nombre = document.getElementById("nombre").value.trim();
+    const correo = document.getElementById("correo").value.trim();
+    const telefono = document.getElementById("telefono").value.trim();
+    const curso = document.getElementById("curso").value;
     const lista = document.getElementById("listaEstudiantes");
 
-    // 2. Obtenemos los valores
-    const nombre = nombreInput.value.trim();
-    const correo = correoInput.value.trim();
-    const telefono = telefonoInput.value.trim();
-    const curso = cursoInput.value;
-
-    // --- VALIDACIÓN DE TELÉFONO (9 dígitos) ---
     const regexTelefono = /^[0-9]{9}$/;
 
-    if (!nombre || !correo || !telefono) {
-        alert("Por favor, completa todos los campos.");
-        return;
-    }
-
-    if (!regexTelefono.test(telefono)) {
-        alert("El teléfono debe tener exactamente 9 números.");
-        return;
-    }
-
-    // 3. Crear el elemento de la lista (li)
-    const li = document.createElement("li");
-    
-    // Contenedor para el texto
-    const info = document.createElement("span");
-    info.innerHTML = `<strong>${nombre}</strong> - ${curso} <br> <small>Email: ${correo} | Tel: ${telefono}</small>`;
-    li.appendChild(info);
-
-    // --- BOTÓN ACTUALIZAR ---
-    const btnActualizar = document.createElement("button");
-    btnActualizar.textContent = "Editar";
-    btnActualizar.className = "btn-edit";
-    btnActualizar.onclick = function() {
-        let nuevoNombre = prompt("Editar nombre:", nombre);
-        if (nuevoNombre) {
-            info.innerHTML = `<strong>${nuevoNombre}</strong> - ${curso} <br> <small>Email: ${correo} | Tel: ${telefono}</small>`;
+    if (nombre && correo && telefono) {
+        if (!regexTelefono.test(telefono)) {
+            alert("El teléfono debe tener 9 números.");
+            return;
         }
-    };
 
-    // --- BOTÓN BORRAR ---
-    const btnBorrar = document.createElement("button");
-    btnBorrar.textContent = "Borrar";
-    btnBorrar.className = "btn-delete";
-    btnBorrar.onclick = function() {
-        li.remove();
-    };
+        const li = document.createElement("li");
 
-    // 4. Insertar botones y agregar a la lista
-    li.appendChild(btnActualizar);
-    li.appendChild(btnBorrar);
-    lista.appendChild(li);
+        // Estructura de la tarjeta: Cuadrito + Info + Botones
+        li.innerHTML = `
+            <div class="avatar"><span>FOTO</span></div>
+            <div class="info-estudiante">
+                <strong>${nombre}</strong><br>
+                <small>${curso} | 📱 ${telefono}</small>
+            </div>
+            <div class="acciones">
+                <button class="btn-edit" onclick="editarRegistro(this, '${nombre}')">Editar</button>
+                <button class="btn-delete" onclick="this.parentElement.parentElement.remove()">Borrar</button>
+            </div>
+        `;
 
-    // 5. Limpiar el formulario
-    document.getElementById("registroForm").reset();
+        lista.appendChild(li);
+        document.getElementById("registroForm").reset();
+    } else {
+        alert("Completa todos los campos.");
+    }
+}
+
+// Función aparte para editar (más limpia)
+function editarRegistro(boton, nombreAntiguo) {
+    let nuevoNombre = prompt("Editar nombre:", nombreAntiguo);
+    if (nuevoNombre) {
+        const infoDiv = boton.parentElement.previousElementSibling;
+        const smallInfo = infoDiv.querySelector("small").innerHTML;
+        infoDiv.innerHTML = `<strong>${nuevoNombre}</strong><br><small>${smallInfo}</small>`;
+    }
 }
