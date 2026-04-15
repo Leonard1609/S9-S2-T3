@@ -72,9 +72,12 @@ ol#listaEstudiantes li {
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    display: flex; /* Alinea cuadrito y texto en fila */
-    align-items: center;
-    position: relative;
+    
+    /* ESTO ES LO IMPORTANTE: */
+    display: flex;             /* Alinea los hijos en fila */
+    align-items: center;       /* Centra todo verticalmente */
+    justify-content: space-between; /* Empuja la info a la izquierda y los botones a la derecha */
+    
     border-left: 6px solid #3b71ca;
 }
 
@@ -104,21 +107,25 @@ ol#listaEstudiantes li {
 }
 
 .info-estudiante {
-    flex-grow: 1;
+    flex-grow: 1;      /* Hace que la info ocupe todo el espacio disponible */
     text-align: left;
+    margin-right: 15px; /* Separa el texto de los botones */
 }
 
 /* Botones de acción */
 .acciones {
-    display: flex;
-    gap: 5px;
+    display: flex;     /* Los botones se mantienen uno al lado del otro */
+    gap: 10px;         /* Espacio entre los dos botones */
+    flex-shrink: 0;    /* Evita que los botones se achiquen si hay mucho texto */
 }
 
+/* Ajuste de los botones para que no se vean gigantes */
 .btn-edit, .btn-delete {
     width: auto;
-    padding: 6px 10px;
-    margin: 0;
-    font-size: 12px;
+    min-width: 80px;   /* Un ancho mínimo para que se vean parejos */
+    padding: 8px 12px;
+    margin: 0;         /* Quitamos márgenes extra */
+    font-size: 13px;
 }
 
 .btn-edit { background-color: #ffc107; color: #000; }
